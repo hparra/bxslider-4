@@ -21,6 +21,7 @@
 		hideControlOnEnd: false,
 		speed: 500,
 		easing: null,
+		slidePadding: 0,
 		slideMargin: 0,
 		startSlide: 0,
 		randomStart: false,
@@ -209,7 +210,7 @@
 				position: 'relative'
 			});
 			// apply the calculated width after the float is applied to prevent scrollbar interference
-			slider.children.width(getSlideWidth());
+			slider.children.width(getSlideWidth() - slider.settings.slidePadding);
 			// if slideMargin is supplied, add the css
 			if(slider.settings.mode == 'horizontal' && slider.settings.slideMargin > 0) slider.children.css('marginRight', slider.settings.slideMargin);
 			if(slider.settings.mode == 'vertical' && slider.settings.slideMargin > 0) slider.children.css('marginBottom', slider.settings.slideMargin);
@@ -1218,7 +1219,7 @@
 		 */
 		el.redrawSlider = function(){
 			// resize all children in ratio to new screen size
-			slider.children.add(el.find('.bx-clone')).width(getSlideWidth());
+			slider.children.add(el.find('.bx-clone')).width(getSlideWidth() - slider.settings.slidePadding);
 			// adjust the height
 			slider.viewport.css('height', getViewportHeight());
 			// update the slide position
